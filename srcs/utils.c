@@ -12,10 +12,10 @@
 
 #include "../includes/minitalk.h"
 
-void throw_error(char *str)
+void	throw_error(char *str)
 {
-    printf("\nError\n%s", str);
-    exit(-1);
+	printf("\nError\n%s", str);
+	exit(-1);
 }
 
 int	ft_return(unsigned long res, int neg)
@@ -32,16 +32,16 @@ int	ft_return(unsigned long res, int neg)
 
 int	ft_atoi(const char *str)
 {
-	int					i;
-	int					neg;
-	unsigned	long	res;
+	int				i;
+	int				neg;
+	unsigned long	res;
 
 	i = 0;
 	res = 0;
 	neg = 1;
-	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t' ||
-				str[i] == '\r' || str[i] == '\n' ||
-				str[i] == '\v' || str[i] == '\f'))
+	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\r' || str[i] == '\n'
+			|| str[i] == '\v' || str[i] == '\f'))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -57,7 +57,7 @@ int	ft_atoi(const char *str)
 	return (ft_return(res, neg));
 }
 
-void ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
