@@ -6,7 +6,7 @@
 /*   By: nathanlafarge <nathanlafarge@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:37:28 by nathanlafar       #+#    #+#             */
-/*   Updated: 2021/07/18 18:39:16 by nathanlafar      ###   ########.fr       */
+/*   Updated: 2021/07/18 18:53:18 by nathanlafar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static t_str	g_message;
 
-void	addzero(void)
+void	addzero(int code)
 {
+	code = 0;
 	g_message.c += 0 << g_message.octet;
 	g_message.octet++;
 }
 
-void	addone(void)
+void	addone(int code)
 {
+	code = 0;
 	g_message.c += 1 << g_message.octet;
 	g_message.octet++;
 }
