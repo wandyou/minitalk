@@ -6,7 +6,7 @@
 /*   By: nathanlafarge <nathanlafarge@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:37:28 by nathanlafar       #+#    #+#             */
-/*   Updated: 2021/07/24 13:34:08 by nathanlafar      ###   ########.fr       */
+/*   Updated: 2021/07/27 22:41:40 by nathanlafar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,10 @@
 
 static t_str	g_message;
 
-void	*ft_memset(void *b, int c, size_t n)
-{
-	size_t			i;
-
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char*)b)[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
-}
-
 void	addzero(int code)
 {
 	code = 0;
+	(void)code;
 	g_message.c += 0 << g_message.octet;
 	g_message.octet++;
 }
@@ -37,6 +25,7 @@ void	addzero(int code)
 void	addone(int code)
 {
 	code = 0;
+	(void)code;
 	g_message.c += 1 << g_message.octet;
 	g_message.octet++;
 }
@@ -46,7 +35,7 @@ int	main(void)
 	int	pid;
 
 	g_message.octet = 0;
-	ft_memset(&g_message.c, '\0', 1);
+	g_message.c = 0;
 	pid = getpid();
 	printf("%d\n", pid);
 	signal(SIGUSR2, addone);
@@ -58,7 +47,7 @@ int	main(void)
 		{
 			ft_putchar(g_message.c);
 			g_message.octet = 0;
-			ft_memset(&g_message.c, '\0', 1);
+			g_message.c = 0;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nathanlafarge <nathanlafarge@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:37:42 by nathanlafar       #+#    #+#             */
-/*   Updated: 2021/07/24 14:26:34 by nathanlafar      ###   ########.fr       */
+/*   Updated: 2021/07/27 22:42:49 by nathanlafar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	send_message(int pid, char *str)
 		{
 			if ((str[i] >> octet) & 1)
 			{
-				if(kill(pid, SIGUSR2) == -1)
-					ft_putchar('2');
+				if (kill(pid, SIGUSR2) > 0)
+					throw_error("Erreur de signal");
 			}
 			else
 			{
-				if(kill(pid, SIGUSR1) == -1)
-					ft_putchar('1');
+				if (kill(pid, SIGUSR1) > 0)
+					throw_error("Erreur de signal");
 			}
 			octet++;
-			usleep(500);
+			usleep(100);
 		}
 		i++;
 	}
