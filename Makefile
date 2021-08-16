@@ -10,26 +10,39 @@
 #                                                                              #
 # **************************************************************************** #
 
-SERVER   = server
+NAME   = server
 CLIENT   = client
-CC	     = gcc
+CC	     = clang
+RM		= rm -rf
 FLAGS    = -Wall -Werror -Wextra
 
-all : $(SERVER) $(CLIENT) clean
+SRCS = 	srcs/server.c \
+		srcs/utils.c
 
-$(SERVER) : srcs/server.o srcs/utils.o includes/minitalk.h
-	@$(CC) server.o utils.o -o $@
+SRCS_CLIENT = srcs/client.c \
+			srcs/utils.c
 
-$(CLIENT) : srcs/client.o srcs/utils.o includes/minitalk.h
-	@$(CC) client.o utils.o -o $@
+OBJS = $(SRCS:.c=.o)
+OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
-%.o : %.c
-	@$(CC) $(FLAGS) $< -c -I includes
+all :
+	make $(NAME)
+	make $(CLIENT)
+
+$(NAME) : $(OBJS) includes/minitalk.h
+			$(CC) -o $(NAME) $(OBJS) $(FLAGS)
+		
+$(CLIENT) : $(OBJS_CLIENT) includes/minitalk.h
+			$(CC) -o $(CLIENT) $(OBJS_CLIENT) $(FLAGS)
+
+bonus : all
 
 clean :
-	@rm -f *.o
+	$(RM) $(OBJS) $(OBJS_CLIENT)
 
 fclean: clean
-	@rm -f $(SERVER) $(CLIENT)
+	$(RM) $(NAME) $(CLIENT)
 
 re: fclean all
+
+.PHONY: all clean fclean re

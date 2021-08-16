@@ -6,7 +6,7 @@
 /*   By: nathanlafarge <nathanlafarge@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:37:42 by nathanlafar       #+#    #+#             */
-/*   Updated: 2021/07/27 22:42:49 by nathanlafar      ###   ########.fr       */
+/*   Updated: 2021/07/17 20:09:39 by nathanlafar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,15 @@ void	send_message(int pid, char *str)
 	int	octet;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		octet = 0;
-		while (octet < 7)
+		while (octet < 8)
 		{
 			if ((str[i] >> octet) & 1)
-			{
-				if (kill(pid, SIGUSR2) > 0)
-					throw_error("Erreur de signal");
-			}
+				kill(pid, SIGUSR2);
 			else
-			{
-				if (kill(pid, SIGUSR1) > 0)
-					throw_error("Erreur de signal");
-			}
+				kill(pid, SIGUSR1);
 			octet++;
 			usleep(100);
 		}

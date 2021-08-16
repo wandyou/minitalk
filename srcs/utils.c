@@ -14,7 +14,7 @@
 
 void	throw_error(char *str)
 {
-	printf("\nError\n%s", str);
+	printf("Error\n%s", str);
 	exit(-1);
 }
 
